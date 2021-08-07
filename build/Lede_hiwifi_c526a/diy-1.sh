@@ -14,7 +14,8 @@
 git clone -b master https://github.com/vernesong/OpenClash.git package/lean/luci-app-openclash  #openclash出国软件
 git clone https://github.com/frainzy1477/luci-app-clash.git package/lean/luci-app-clash  #clash出国软件
 git clone https://github.com/tty228/luci-app-serverchan.git package/lean/luci-app-serverchan  #微信推送
-git clone https://github.com/zzsj0928/luci-app-serverchand.git package/lean/luci-app-serverchand #钉钉推送
+#git clone https://github.com/zzsj0928/luci-app-serverchand.git package/lean/luci-app-serverchand #钉钉推送  已改为全能推送
+git clone https://github.com/zzsj0928/luci-app-pushbot package/lean/luci-app-pushbot #全能推送
 git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/lean/luci-app-smartdns  #smartdns DNS加速
 #git clone https://github.com/garypang13/luci-app-eqos.git package/lean/luci-app-eqos  #内网IP限速工具
 #git clone https://github.com/jerrykuku/node-request.git package/lean/node-request  #京东签到依赖
