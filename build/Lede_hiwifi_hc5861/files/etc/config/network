@@ -48,9 +48,6 @@ config switch_vlan
 	option vid '2'
 	option ports '0 6t'
 
-config interface 'wwan'
-	option proto 'dhcp'
-
 config switch_vlan
 	option device 'switch0'
 	option vlan '3'
