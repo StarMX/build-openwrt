@@ -12,13 +12,12 @@ sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.de
 #git clone -b 18.06 https://github.com/garypang13/luci-theme-edge.git package/lean/luci-theme-edge  #主题-edge-动态登陆界面
 #git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom.git package/lean/luci-theme-infinityfreedom  #透明主题
 git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/lean/luci-app-smartdns  #smartdns DNS加速
-#git clone https://github.com/jerrykuku/node-request.git package/lean/node-request  #京东签到依赖
+git clone https://github.com/sirpdboy/netspeedtest.git package/lean/luci-app-netspeedtest #网络速度测试1.5完整版
 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/lean/luci-theme-opentopd #主题
 git clone https://github.com/sirpdboy/luci-app-advanced.git package/lean/luci-app-advanced #高级设置
 git clone https://github.com/lisaac/luci-app-dockerman.git package/lean/luci-app-dockerman
 #git clone https://github.com/awesome-openwrt/luci-app-control-timewol.git package/lean/luci-app-control-timewol #定时唤醒
-#svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/lean/luci-app-passwall  #passwall出国软件
-#svn co https://github.com/xiaorouji/openwrt-package/trunk/package package/lean/package  #passwall出国软件配套
+
 
 #rm -rf ./package/lean/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/lean/luci-theme-argon  #新的argon主题
 #全新的[argon-主题]此主题玩法很多,这里看说明【https://github.com/jerrykuku/luci-theme-argon/blob/18.06/README_ZH.md】
