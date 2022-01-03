@@ -15,7 +15,7 @@ git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/lean/l
 git clone https://github.com/sirpdboy/netspeedtest.git package/lean/luci-app-netspeedtest #网络速度测试1.5完整版
 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/lean/luci-theme-opentopd #主题
 git clone https://github.com/sirpdboy/luci-app-advanced.git package/lean/luci-app-advanced #高级设置
-git clone https://github.com/lisaac/luci-app-dockerman.git package/lean/luci-app-dockerman
+#git clone https://github.com/lisaac/luci-app-dockerman.git package/lean/luci-app-dockerman
 #git clone https://github.com/awesome-openwrt/luci-app-control-timewol.git package/lean/luci-app-control-timewol #定时唤醒
 
 
