@@ -27,4 +27,4 @@ sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luas
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luasrc/model/cbi/aliyundrive-fuse/*.lua
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luasrc/view/aliyundrive-fuse/*.htm
 #
-sed -i 's/Rclone/nas/g' feeds/luci/applications/luci-app-rclone/luasrc/controller/rclone.lua
+sed -i 's/Rclone/网盘/g' feeds/luci/applications/luci-app-rclone/luasrc/controller/rclone.lua
