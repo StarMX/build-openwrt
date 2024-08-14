@@ -39,7 +39,7 @@ on:
 env: 
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   SCKEY: ${{ secrets.SCKEY }}
-  GITHUB_RELEASE: https://github.com/yichu77/build-openwrt/releases
+  GITHUB_RELEASE: https://github.com/StarMX/build-openwrt/releases
   TZ: Asia/Shanghai
 
 jobs: 
