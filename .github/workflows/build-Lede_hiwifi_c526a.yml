@@ -38,7 +38,6 @@ on:
 
 env: 
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-  SCKEY: ${{ secrets.SCKEY }}
   GITHUB_RELEASE: https://github.com/StarMX/build-openwrt/releases
   TZ: Asia/Shanghai
 
@@ -51,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_hiwifi_c526a]  #[Lede_x86_64,Lienol_x86_64,Project_x86_64,Project_hiwifi_c526a]
+        target: [Lede_hiwifi_c526a]
 
     steps:
     - name: 准备结束
@@ -63,7 +62,7 @@ jobs:
         echo "REPO_URL=${REPO_URL}" >> $GITHUB_ENV
         echo "REPO_BRANCH=${REPO_BRANCH}" >> $GITHUB_ENV
         echo "CONFIG_FILE=${CONFIG_FILE}" >> $GITHUB_ENV
-        echo "WXFB_MESSAGE=${WXFB_MESSAGE}" >> $GITHUB_ENV
+        echo "FIRMWARE_MESSAGE=${FIRMWARE_MESSAGE}" >> $GITHUB_ENV
         echo "DIY_P1_SH=${DIY_P1_SH}" >> $GITHUB_ENV
         echo "DIY_P2_SH=${DIY_P2_SH}" >> $GITHUB_ENV
         echo "SSH_ACTIONS=${SSH_ACTIONS}" >> $GITHUB_ENV
@@ -72,15 +71,6 @@ jobs:
         echo "UPLOAD_FIRMWARE=${UPLOAD_FIRMWARE}" >> $GITHUB_ENV
         echo "UPLOAD_COWTRANSFER=${UPLOAD_COWTRANSFER}" >> $GITHUB_ENV
         echo "UPLOAD_RELEASE=${UPLOAD_RELEASE}" >> $GITHUB_ENV
-        echo "SERVERCHAN_SCKEY=${SERVERCHAN_SCKEY}" >> $GITHUB_ENV
-    
-    # - name: 微信通知
-    #   uses: emon100/Action-Serverchan@master
-    #   if: env.SERVERCHAN_SCKEY == 'true'
-    #   with:
-    #     SCKEY: ${{ secrets.SCKEY }}
-    #     text: 开始编译${{matrix.target}}啦
-    #     desp: 主人您设置要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中......
     
     - name: 开始安装编译所需系统
       env:
@@ -197,26 +187,6 @@ jobs:
       with:
         name: OpenWrt_firmware_${{matrix.target}}_${{ env.date }}
         path: ${{ env.FIRMWARE }}
-
-    - name: 上传固件到「奶牛快传」和「wetransfer」
-      if: steps.organizer.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-    
-    - name: 提取发布用的「奶牛快传」跟「WeTransfer」的链接
-      if: steps.organizer.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "COWTRANSFER_URL=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV 
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
-        echo "WETRANSFER_URL=$(cat wetransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV 
     
     - name: 自动发布固件
       uses: softprops/action-gh-release@v1
@@ -224,20 +194,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        name: ${{ env.date1 }} 「 ${{ env.WXFB_MESSAGE }} 」固件
+        name: ${{ env.date1 }} 「 ${{ env.FIRMWARE_MESSAGE }} 」固件
         tag_name: ${{ env.date2 }}
         body: |            
             ☆  源码 : ${{ env.REPO_URL }}
             ☆  分支 : ${{ env.REPO_BRANCH }}
-            ☆  感谢源码作者无私分享！
-            
-            🎉 [ ${{ env.WXFB_MESSAGE }} ]固件下载 ✨
-            
-            💐 奶牛快传(国内高速🚀下载)： ${{ env.COWTRANSFER_URL }}
-            
-            ⛄ WeTransfer(国外高速🚀下载)： ${{ env.WETRANSFER_URL }}
-            
-            🌴 链接有效期为7天，无需注册直接下载 🐤
         files: ${{ env.FIRMWARE }}/*
 
     - name: 删除上传在github空间的老固件
@@ -255,26 +216,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
-    # - name: 微信通知
-    #   uses: emon100/Action-Serverchan@master
-    #   if: steps.organizer.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true'
-    #   with:
-    #     SCKEY: ${{ secrets.SCKEY }}
-    #     text: 恭喜主人${{matrix.target}}固件编译成功！
-    #     desp: 我亲爱的主人您要编译的${{ env.WXFB_MESSAGE }}固件成功完成了！
-              
-              
-    #           完成时间：${{ env.date1 }}
-              
-              
-    #           发布地址：${{ env.GITHUB_RELEASE }}
-              
-              
-    #           奶牛快传：${{ env.COWTRANSFER_URL }}
-              
-              
-    #           WeTransfer：${{ env.WETRANSFER_URL }}
-              
-              
-    #           祝小主人见人爱，花见花开，车见车载，天天好心情🎈！！！
