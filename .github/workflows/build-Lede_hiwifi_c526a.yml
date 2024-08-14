@@ -174,7 +174,7 @@ jobs:
         find -name "*esxi.vmdk*" | xargs -i mv -f {} packages
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
     
     - name: 上传.config配置文件在github空间
       uses: actions/upload-artifact@v2
