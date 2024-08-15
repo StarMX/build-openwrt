@@ -19,8 +19,3 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
 # batman MASH 用到
 # sed -i '$a src-git package https://github.com/open-mesh-mirror/batman-adv.git' feeds.conf.default
-
-
-
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
