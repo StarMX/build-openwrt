@@ -65,6 +65,7 @@ jobs:
         echo "FIRMWARE_MESSAGE=${FIRMWARE_MESSAGE}" >> $GITHUB_ENV
         echo "DIY_P1_SH=${DIY_P1_SH}" >> $GITHUB_ENV
         echo "DIY_P2_SH=${DIY_P2_SH}" >> $GITHUB_ENV
+        echo "DIY_P3_SH=${DIY_P3_SH}" >> $GITHUB_ENV
         echo "SSH_ACTIONS=${SSH_ACTIONS}" >> $GITHUB_ENV
         echo "UPLOAD_BIN_DIR=${UPLOAD_BIN_DIR}" >> $GITHUB_ENV
         echo "UPLOAD_CONFIG=${UPLOAD_CONFIG}" >> $GITHUB_ENV
@@ -110,7 +111,12 @@ jobs:
         fi
         ./scripts/feeds clean
         ./scripts/feeds update -a
-        rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
+        if [ -f "build/${{matrix.target}}/$DIY_P2_SH" ]; then
+        (
+          chmod +x build/${{matrix.target}}/$DIY_P2_SH
+          /bin/bash "build/${{matrix.target}}/$DIY_P2_SH"
+        )
+        fi
         ./scripts/feeds install -a
         if [ -n "$(ls -A "build/${{matrix.target}}/files" 2>/dev/null)" ]; then
          cp -rf build/${{matrix.target}}/files files
@@ -118,10 +124,10 @@ jobs:
         if [ -n "$(ls -A "build/${{matrix.target}}/diy" 2>/dev/null)" ]; then
          cp -Rf build/${{matrix.target}}/diy/* ./
         fi        
-        if [ -f "build/${{matrix.target}}/$DIY_P2_SH" ]; then
+        if [ -f "build/${{matrix.target}}/$DIY_P3_SH" ]; then
         (
-          chmod +x build/${{matrix.target}}/$DIY_P2_SH
-          /bin/bash "build/${{matrix.target}}/$DIY_P2_SH"
+          chmod +x build/${{matrix.target}}/$DIY_P3_SH
+          /bin/bash "build/${{matrix.target}}/$DIY_P3_SH"
         )
         fi
          mv build/${{matrix.target}}/$CONFIG_FILE .config
