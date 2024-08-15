@@ -1,7 +1,8 @@
 #!/bin/bash
 #
 
-# sed -i 's/ +libopenssl-legacy//g' feeds/smpackage/shadowsocksr-libev/Makefile
+sed -i 's/ +libopenssl-legacy//g' feeds/helloworld/shadowsocksr-libev/Makefile
+
 
 # 修改openwrt登陆地址,把下面的192.168.2.2修改成你想要的就可以了
 sed -i 's/192.168.1.1/10.1.2.1/g' package/base-files/files/bin/config_generate
@@ -23,6 +24,7 @@ sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc
 sed -i 's/services/vpn/g' feeds/small/luci-app-ssr-plus/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' feeds/small/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/*.lua
 sed -i 's/services/vpn/g' feeds/small/luci-app-ssr-plus/luasrc/view/shadowsocksr/*.htm
+
 # aliyundrive
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luasrc/controller/*.lua
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luasrc/model/cbi/aliyundrive-fuse/*.lua
