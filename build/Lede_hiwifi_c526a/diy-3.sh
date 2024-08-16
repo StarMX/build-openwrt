@@ -34,4 +34,4 @@ sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luas
 # sed -i 's/Rclone/nas/g' feeds/luci/applications/luci-app-rclone/luasrc/controller/rclone.lua
 
 
-curl --upload-file .config https://transfer.sh/.config
+# curl --upload-file ./.config https://transfer.sh/config
