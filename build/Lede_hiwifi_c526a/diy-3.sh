@@ -4,6 +4,7 @@
 # sed -i 's/ +libopenssl-legacy//g' feeds/helloworld/shadowsocksr-libev/Makefile
 
 
+
 # 修改openwrt登陆地址,把下面的192.168.2.2修改成你想要的就可以了
 sed -i 's/192.168.1.1/10.1.2.1/g' package/base-files/files/bin/config_generate
 
@@ -18,6 +19,18 @@ sed -i "s/OpenWrt /StarZ build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" packag
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings
 
 
+
+sed -i 's/CONFIG_DEFAULT_luci-app-ddns/#CONFIG_DEFAULT_luci-app-ddns/g' .config
+sed -i 's/CONFIG_PACKAGE_luci-app-ddns/#CONFIG_PACKAGE_luci-app-ddns/g' .config
+sed -i 's/CONFIG_PACKAGE_luci-app-adbyby-plus/#CONFIG_PACKAGE_luci-app-adbyby-plus/g' .config
+sed -i 's/CONFIG_DEFAULT_luci-app-adbyby-plus/#CONFIG_DEFAULT_luci-app-adbyby-plus/g' .config
+sed -i 's/CONFIG_DEFAULT_luci-app-unblockmusic/#CONFIG_DEFAULT_luci-app-unblockmusic/g' .config
+sed -i 's/CONFIG_PACKAGE_luci-app-unblockmusic/#CONFIG_PACKAGE_luci-app-unblockmusic/g' .config
+
+
+
+
+
 # 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
 sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua
 #
@@ -30,4 +43,4 @@ sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luas
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luasrc/model/cbi/aliyundrive-fuse/*.lua
 sed -i 's/services/nas/g' feeds/luci/applications/luci-app-aliyundrive-fuse/luasrc/view/aliyundrive-fuse/*.htm
 #
-sed -i 's/Rclone/nas/g' feeds/luci/applications/luci-app-rclone/luasrc/controller/rclone.lua
+# sed -i 's/Rclone/nas/g' feeds/luci/applications/luci-app-rclone/luasrc/controller/rclone.lua
