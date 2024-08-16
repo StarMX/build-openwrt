@@ -197,7 +197,7 @@ jobs:
         path: ${{ env.FIRMWARE }}
     
     - name: 自动发布固件
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@master
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}

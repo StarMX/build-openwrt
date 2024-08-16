@@ -19,18 +19,6 @@ sed -i "s/OpenWrt /StarZ build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" packag
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings
 
 
-
-sed -i 's/CONFIG_DEFAULT_luci-app-ddns/#CONFIG_DEFAULT_luci-app-ddns/g' .config
-sed -i 's/CONFIG_PACKAGE_luci-app-ddns/#CONFIG_PACKAGE_luci-app-ddns/g' .config
-sed -i 's/CONFIG_PACKAGE_luci-app-adbyby-plus/#CONFIG_PACKAGE_luci-app-adbyby-plus/g' .config
-sed -i 's/CONFIG_DEFAULT_luci-app-adbyby-plus/#CONFIG_DEFAULT_luci-app-adbyby-plus/g' .config
-sed -i 's/CONFIG_DEFAULT_luci-app-unblockmusic/#CONFIG_DEFAULT_luci-app-unblockmusic/g' .config
-sed -i 's/CONFIG_PACKAGE_luci-app-unblockmusic/#CONFIG_PACKAGE_luci-app-unblockmusic/g' .config
-
-
-
-
-
 # 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
 sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua
 #
