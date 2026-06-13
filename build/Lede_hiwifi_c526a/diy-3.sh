@@ -20,14 +20,16 @@ sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz
 
 
 # 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
-sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc/controller/samba4.lua
+sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc/controller/*.lua
 #
 sed -i 's/services/vpn/g' feeds/helloworld/luci-app-ssr-plus/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' feeds/helloworld/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/*.lua
 sed -i 's/services/vpn/g' feeds/helloworld/luci-app-ssr-plus/luasrc/view/shadowsocksr/*.htm
+#
+#rm -rf package/lean/luci-theme-argon
+#rm -rf feeds/luci/themes/luci-theme-argon
+
 
 #
 # sed -i 's/Rclone/nas/g' feeds/luci/applications/luci-app-rclone/luasrc/controller/rclone.lua
-
-
 # curl --upload-file ./.config https://transfer.sh/config
