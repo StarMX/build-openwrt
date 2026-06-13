@@ -20,7 +20,7 @@ sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz
 
 
 # 修改插件名字（修改名字后不知道会不会对插件功能有影响，自己多测试）
-sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc/controller/*.lua
+#sed -i 's/\"services\"/\"nas\"/g' feeds/luci/applications/luci-app-samba4/luasrc/controller/*.lua
 #
 sed -i 's/services/vpn/g' feeds/helloworld/luci-app-ssr-plus/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' feeds/helloworld/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/*.lua
